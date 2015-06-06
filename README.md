@@ -33,10 +33,11 @@ and verify that the checkout respects them
 
 Example:
 
+    CheckoutSpec:
     A checkout
     - should scan apples
       + When scanning an apple 
-      + Then should return an item   
+      + Then should return an item 
     - should scan oranges
       + When scanning an orange 
       + Then should return an item 
@@ -52,6 +53,20 @@ Example:
     - should return 85p as cost for one apple and one orange
       + When scanning one apple and one orange 
       + Then should return a total cost of 85p 
-    - should return 2.05 GBP as cost for three apples and one orange
+    - should return 1.45 GBP as cost for three apples and one orange
       + When scanning three apples and one orange 
-      + Then should return a total cost of 2.05 GBP 
+      + Then should return a total cost of 1.45 GBP 
+    - should get the second apple free of charge
+      + When scanning two apples 
+      + Then should cost only 60p as the second is free 
+    - should get one free if you buy three oranges
+      + When scanning three oranges 
+      + Then should cost only 50p as the third orange was free 
+    - should get one apple and one orange free
+      + When scanning three apples and four oranges 
+      + Then should cost only 1 GBP and 95p as one apple and one orange are free 
+    Run completed in 329 milliseconds.
+    Total number of tests run: 10
+    Suites: completed 1, aborted 0
+    Tests: succeeded 10, failed 0, canceled 0, ignored 0, pending 0
+    All tests passed.    
