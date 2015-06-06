@@ -8,10 +8,15 @@ class Checkout {
   }
 
   def scan(products: Seq[String]): BigDecimal =
-    products.map(scan).flatten.fold(BigDecimal("0"))(_+_) - appleDiscount(products)
+    products.map(scan).flatten.fold(BigDecimal("0"))(_+_) - appleDiscount(products) - orangeDiscount(products)
 
   def appleDiscount(products: Seq[String]): BigDecimal = {
     val numFreeApples = products.count(_ == "apple") / 2
     numFreeApples * BigDecimal("0.60")
+  }
+
+  def orangeDiscount(products: Seq[String]): BigDecimal = {
+    val numFreeOranges = products.count(_ == "orange") / 3
+    numFreeOranges * BigDecimal("0.25")
   }
 }

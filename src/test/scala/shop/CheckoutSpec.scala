@@ -60,4 +60,12 @@ class CheckoutSpec extends FlatSpec with GivenWhenThen with Matchers with Option
     Then("should cost only 60p as the second is free")
     scannedCost should be (BigDecimal("0.60"))
   }
+
+  it should "get one free if you buy three oranges" in {
+    When("scanning three oranges")
+    val scannedCost = checkout scan List("orange", "orange", "orange")
+
+    Then("should cost only 50p as the third orange was free")
+    scannedCost should be (BigDecimal("0.50"))
+  }
 }
