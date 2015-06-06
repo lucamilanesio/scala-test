@@ -1,9 +1,9 @@
 package shop
 
 class Checkout {
-  def scan(product: String): Option[Any] = product match {
-    case "apple" => Some("60p")
-    case "orange" => Some("25p")
+  def scan(product: String): Option[BigDecimal] = product match {
+    case "apple" => Some(BigDecimal("0.60"))
+    case "orange" => Some(BigDecimal("0.25"))
     case _ => None
   }
 

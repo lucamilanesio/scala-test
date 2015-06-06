@@ -28,12 +28,12 @@ class CheckoutSpec extends FlatSpec with GivenWhenThen with Matchers with Option
   it should "return 60p as cost for an apple" in {
     When("scanning an apple")
     Then("should return a 60p cost")
-    (checkout scan "apple").value should be ("60p")
+    (checkout scan "apple").value should be (BigDecimal("0.60"))
   }
 
   it should "return 25p as cost for an orange" in {
     When("scanning an orange")
     Then("should return a 25p cost")
-    (checkout scan "orange").value should be ("25p")
+    (checkout scan "orange").value should be (BigDecimal("0.25"))
   }
 }
