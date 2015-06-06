@@ -7,4 +7,7 @@ class Checkout {
     case _ => None
   }
 
+  def scan(products: Seq[String]): BigDecimal =
+    products.map(scan).flatten.fold(BigDecimal("0"))(_+_)
+
 }
