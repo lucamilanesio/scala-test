@@ -3,7 +3,7 @@ package shop
 import org.scalatest._
 
 
-class CheckoutSpec extends FlatSpec with GivenWhenThen with Matchers {
+class CheckoutSpec extends FlatSpec with GivenWhenThen with Matchers with OptionValues {
 
   "A checkout" should
     "scan apples" in {
@@ -37,5 +37,27 @@ class CheckoutSpec extends FlatSpec with GivenWhenThen with Matchers {
 
     Then("item should not be found")
     item should be (empty)
+  }
+
+  it should "return 60p as cost for an apple" in {
+    Given("a shop checkout")
+    val checkout = new Checkout
+
+    When("scanning an apple")
+    val itemCost = checkout scan "apple"
+
+    Then("should return a 60p cost")
+    itemCost.value should be ("60p")
+  }
+
+  it should "return 25p as cost for an orange" in {
+    Given("a shop checkout")
+    val checkout = new Checkout
+
+    When("scanning an orange")
+    val itemCost = checkout scan "orange"
+
+    Then("should return a 25p cost")
+    itemCost.value should be ("25p")
   }
 }
