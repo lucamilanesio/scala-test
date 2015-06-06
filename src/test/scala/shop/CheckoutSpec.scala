@@ -4,12 +4,10 @@ import org.scalatest._
 
 
 class CheckoutSpec extends FlatSpec with GivenWhenThen with Matchers with OptionValues {
+  val checkout = new Checkout
 
   "A checkout" should
     "scan apples" in {
-    Given("a shop checkout")
-    val checkout = new Checkout
-
     When("scanning an apple")
     val item = checkout scan "apple"
 
@@ -18,9 +16,6 @@ class CheckoutSpec extends FlatSpec with GivenWhenThen with Matchers with Option
   }
 
   it should "scan oranges" in {
-    Given("a shop checkout")
-    val checkout = new Checkout
-
     When("scanning an orange")
     val item = checkout scan "orange"
 
@@ -29,9 +24,6 @@ class CheckoutSpec extends FlatSpec with GivenWhenThen with Matchers with Option
   }
 
   it should "not scan kiwis" in {
-    Given("a shop checkout")
-    val checkout = new Checkout
-
     When("scanning a kiwi")
     val item = checkout scan "kiwi"
 
@@ -40,9 +32,6 @@ class CheckoutSpec extends FlatSpec with GivenWhenThen with Matchers with Option
   }
 
   it should "return 60p as cost for an apple" in {
-    Given("a shop checkout")
-    val checkout = new Checkout
-
     When("scanning an apple")
     val itemCost = checkout scan "apple"
 
@@ -51,9 +40,6 @@ class CheckoutSpec extends FlatSpec with GivenWhenThen with Matchers with Option
   }
 
   it should "return 25p as cost for an orange" in {
-    Given("a shop checkout")
-    val checkout = new Checkout
-
     When("scanning an orange")
     val itemCost = checkout scan "orange"
 
