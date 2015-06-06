@@ -45,11 +45,19 @@ class CheckoutSpec extends FlatSpec with GivenWhenThen with Matchers with Option
     scannedCost should be (BigDecimal("0.85"))
   }
 
-  it should "return 2.05 GBP as cost for three apples and one orange" in {
+  it should "return 1.45 GBP as cost for three apples and one orange" in {
     When("scanning three apples and one orange")
     val scannedCost = checkout scan List("apple", "apple", "orange", "apple")
 
-    Then("should return a total cost of 2.05 GBP")
-    scannedCost should be (BigDecimal("2.05"))
+    Then("should return a total cost of 1.45 GBP")
+    scannedCost should be (BigDecimal("1.45"))
+  }
+
+  it should "get the second apple free of charge" in {
+    When("scanning two apples")
+    val scannedCost = checkout scan List("apple", "apple")
+
+    Then("should cost only 60p as the second is free")
+    scannedCost should be (BigDecimal("0.60"))
   }
 }
