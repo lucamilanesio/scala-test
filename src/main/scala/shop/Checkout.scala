@@ -1,6 +1,7 @@
 package shop
 
 class Checkout {
+  val ZeroPrice = BigDecimal("0")
   val PriceApple = BigDecimal("0.60")
   val PriceOrange = BigDecimal("0.25")
 
@@ -13,16 +14,11 @@ class Checkout {
     case _ => None
   }
 
-  def scan(products: Seq[String]): BigDecimal =
-    products.map(scan).flatten.fold(BigDecimal("0"))(_+_) - appleDiscount(products) - orangeDiscount(products)
-
-  def appleDiscount(products: Seq[String]): BigDecimal = {
-    val numFreeApples = products.count(_ == Apple) / 2
-    numFreeApples * PriceApple
+  def scan(products: Seq[String]): BigDecimal = {
+    products.map(scan).flatten.fold(ZeroPrice)(_ + _) -
+      discount(products, 2, Apple) - discount(products, 3, Orange)
   }
 
-  def orangeDiscount(products: Seq[String]): BigDecimal = {
-    val numFreeOranges = products.count(_ == Orange) / 3
-    numFreeOranges * PriceOrange
-  }
+  def discount(products: Seq[String], discountedQuantity: Int, discountedProduct: String) =
+    products.count(_ == discountedProduct) / discountedQuantity * scan(discountedProduct).get
 }
