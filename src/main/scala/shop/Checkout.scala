@@ -1,6 +1,10 @@
 package shop
 
 class Checkout {
-  def scan(s: String): Option[Any] = Some("item")
+  def scan(product: String): Option[Any] = product match {
+    case "apple" => Some("item")
+    case "orange" => Some("item")
+    case _ => None
+  }
 
 }
